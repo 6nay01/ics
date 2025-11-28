@@ -152,7 +152,7 @@ void phase_3(char *s)
 * func4_2(0x5,0x14,0x41,0x43,0x42,c)
   * func4_2(0x4,0x4,0x42,0x43,0x41,c)
   * func4_2(0x3,0x4,0x42,0x41,0x43,c)
-  * 得到c:0x42（'B'），0x41（'A'），'\0'
+  * 得到c:0x42（'B'），d:0x41（'A'），'\0'
 
 ```c
 int func4_1(int i)
@@ -181,11 +181,11 @@ void func4_2(int a,int b,char c,char d,char e,char* dest)
         dest[1]=c;
         dest[2]='\0';
     }
-    else if(func4_1(a)>=b)
+    else if(func4_1(a-1)>=b)
     {
         func4_2(a-1,b,c,e,d,dest);
     }
-    else if(func4_1(a)!=b)
+    else if(func4_1(a-1)+1!=b)
     {
         func4_2(a-1,b-func4_1(a)-1,e,d,c,dest);
     }
@@ -239,7 +239,7 @@ void phase_5(char *s)
     int sum=0;
     for(int i=0;i<6;++i)
     {
-        sum+=s[i]&0xf;
+        sum+=array[s[i]&0xf];
     }
     if(sum!=0x3d)
     {
